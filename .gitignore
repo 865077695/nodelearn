@@ -1,1 +1,3 @@
 # Created by .ignore support plugin (hsz.mobi)
+# 忽略任意文件夹内的node_modules文件夹
+*/node_modules/

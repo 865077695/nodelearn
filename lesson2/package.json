@@ -1,0 +1,14 @@
+{
+  "name": "lesson2",
+  "version": "1.0.0",
+  "description": "express搭、基于node.js平台，快速��、开放��、极简的web开发框架",
+  "main": "server.js",
+  "scripts": {
+    "test": "npm start"
+  },
+  "author": "zhiq",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.3"
+  }
+}

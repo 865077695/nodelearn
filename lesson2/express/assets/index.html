@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+静态页面asd
+<a href="a.html">a页面</a>
+<a href="b.html">b页面</a>
+<button id="btn">点击发送get请求</button>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    $('#btn').on('click',function(){
+        $.ajax({
+            url:'/data/about',
+            method:'GET',
+            dataType:'json',
+            success: function(data){
+                console.log(data)
+            },
+            error: function(err){
+                console.log(err)
+            }
+        })
+    })
+</script>
+</body>
+</html>

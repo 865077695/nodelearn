@@ -1,0 +1,11 @@
+{
+  "name": "express",
+  "version": "1.0.0",
+  "description": "简单的包含静态页面展示、ajax请求的服务器",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "zhiq",
+  "license": "ISC"
+}
