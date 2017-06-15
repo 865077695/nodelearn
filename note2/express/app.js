@@ -7,7 +7,10 @@ const router = require('./router'),
     express = router.express,
     app = express();
 
-// 配置http请求
+
+app.set('views','./views')
+app.set('view engine','jade')
+// 将路由挂载至应用(配置http请求)
 //第一个参数为映射虚拟路径，加了之后get请求时需要加上他
 // app.use('/data',route)
 app.use('/data',route);
