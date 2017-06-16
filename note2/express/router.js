@@ -14,7 +14,7 @@ router.get('/', function (req, res) {
 
 // 定义 about 页面的路由
 router.get('/about', function (req, res) {
-    res.json({"name":"zhiqabout"});
+    res.json({"name":"zhiqaboutme"});
     // res.render('render');
 });
 
