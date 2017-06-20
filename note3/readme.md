@@ -7,6 +7,7 @@ Mongodb
 
 
 1. 在目录下新建一下结构文件夹及空文件（其中package.json通过npm init生成）
+
     ![](../zImg/1.png)
 
    以上对应文件夹的作用：
