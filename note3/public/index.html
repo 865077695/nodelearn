@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+静态资源
+<button class="btn1">点击</button>
+<button class="btn2">点击</button>
+<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script>
+    $('.btn1').on('click',function(){
+        $.ajax({
+            url:'/posts',
+            method: 'GET',
+            success: function(res){
+                console.log(res);
+                if(!res){
+                    location.href = './login.html?'+location.href;
+                }
+            }
+        })
+    })
+    $('.btn2').on('click',function(){
+        $.ajax({
+            url:'/posts',
+            method: 'POST',
+            success: function(res){
+                console.log(res);
+                if(res){
+
+                }
+            }
+        })
+    })
+</script>
+</body>
+</html>
