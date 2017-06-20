@@ -1,8 +1,21 @@
 var express = require('express');
-var router = express.Router();
+var Mongolass =require('mongolass');
 
+var router = express.Router();
+// var mongolass = new mongolass();
 var checkLogin = require('../middlewares/check').checkLogin;
 
+Mongolass.connect('mongodb://localhost:27107/myblog',function(err,db){
+    "use strict";
+    if(err){
+        console.log(111111111+err)
+    }else{
+        console.log(22222222222222222)
+    }
+})
+// const mongolass = new Mongolass('mongodb://localhost:27107/myblog')
+// const User = mongolass.model('User');
+// User.insertOne({name:'zhiq',age:18})
 // GET /posts 所有用户或者特定用户的文章页
 //   eg: GET /posts?author=xxx
 router.get('/', function(req, res, next) {
