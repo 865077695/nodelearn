@@ -7,15 +7,13 @@ Mongodb
 
 
 1. 在目录下新建一下结构文件夹及空文件（其中package.json通过npm init生成）
+    ![](../zImg/1.png)
 
-![](../zImg/1.png)
-
-以上对应文件夹的作用：
+   以上对应文件夹的作用：
     * model: 存放操作数据库的文件
     * public:  存放静态资源，如css、img等
     * routers: 存放路由配置文件
     * views: 存放模板文件
-    * index.js: 程序主文件
     * package.json: 存储项目名，作者信息，描述信息，项目依赖等信息。
     
 2. 安装依赖模块
