@@ -7,7 +7,8 @@ Mongodb
 
 
 1. 在目录下新建一下结构文件夹及空文件（其中package.json通过npm init生成）
-// TODO zImg/1.png
+
+![](https://github.com/865077695/nodelearn/blob/master/zImg/1.png)
 以上对应文件夹的作用：
     * model: 存放操作数据库的文件
     * public:  存放静态资源，如css、img等
