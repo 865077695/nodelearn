@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登陆页面</title>
+</head>
+<body>
+<input type="text" placeholder="username" id="user">
+<input type="text" placeholder="password" id="pwd">
+<button class="btn">登陆</button>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    $(function(){
+        $('.btn').on('click',function(){
+            var user = $('#user').val()
+            var pwd = $('#pwd').val()
+            $.ajax({
+                url:'/signin',
+                data:{user:user,pwd:pwd},
+                method:'POST',
+                success:function(res){
+                    console.log(res);
+                    if(res === 'ok'){
+                        var back = location.href.split('?')[1];
+                        document.write('登陆成功');
+                        setTimeout(function(){
+                            location.href = back;
+                        },2000)
+                    }
+                }
+            })
+        })
+    })
+</script>
+</body>
+</html>
