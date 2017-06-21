@@ -7,7 +7,7 @@ const
     bodyParser = require('body-parser'),
     config = require('config-lite')(__dirname),
     session = require('express-session'),
-    connectMongo = require('connect-mongo'),
+    MongoStore  = require('connect-mongo')(session),
     routes = require('./routes');
 
 
@@ -31,9 +31,9 @@ app.use(session({
     cookie: {
         maxAge: config.session.maxAge// 过期时间，过期后cookie中的sessionId自动删除
     },
-    // store: new MongoStore({                   // 将sessionId存储到mongodb
-    //     url: config.mongodb
-    // })
+    store: new MongoStore({                   // 将sessionId存储到mongodb
+        url: config.mongodb
+    })
 }))
 // 路由
 routes(app);

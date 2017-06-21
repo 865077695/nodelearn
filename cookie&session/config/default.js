@@ -8,5 +8,5 @@ module.exports = {
         key: 'zhang',
         maxAge: 2592000000
     },
-    db:'http://localhost:27017/test'
+    mongodb:'mongodb://localhost:27017/test'
 }

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+</head>
+<body>
+<input type="text" id="user">
+<input type="text" id="password">
+<button class="btn">注册</button>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script>
+$(function () {
+    $('.btn').on('click',function(){
+        $.ajax({
+            url: '/signup',
+            data: {
+                user: $('#user').val(),
+                password: $('#password').val()
+            },
+            method: 'POST',
+            success: function(res){
+                console.log(res)
+            }
+        })
+    })
+})
+</script>
+</body>
+</html>
