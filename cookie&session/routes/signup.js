@@ -13,41 +13,39 @@ const
 // checkNotLogin = require('../middlewares/check').checkNotLogin;
 
 // GET /signup 注册页
-router.get('/', function (req, res, next) {
-    res.render('signup');
-});
+// router.get('/', function (req, res, next) {
+//     res.render('signup');
+// });
 
 // POST /signup 用户注册
 router.post('/',  function (req, res, next) {
-    var name = req.body.user,
-    password = req.body.password;
-    console.log(req.body)
+    // 获取提交过来的数据
+    var name = req.body.username,
+    password = req.body.password,
+    repassword = req.body.repassword,
+    gender = req.body.gender;
+    console.log(req.body);
     // 校验参数
-    // try {
-    //     if (!(name.length >= 1 && name.length <= 10)) {
-    //         throw new Error('名字请限制在 1-10 个字符');
-    //     }
-    //     if (['m', 'f', 'x'].indexOf(gender) === -1) {
-    //         throw new Error('性别只能是 m、f 或 x');
-    //     }
-    //     if (!(bio.length >= 1 && bio.length <= 30)) {
-    //         throw new Error('个人简介请限制在 1-30 个字符');
-    //     }
-    //     if (!req.files.avatar.name) {
-    //         throw new Error('缺少头像');
-    //     }
-    //     if (password.length < 6) {
-    //         throw new Error('密码至少 6 个字符');
-    //     }
-    //     if (password !== repassword) {
-    //         throw new Error('两次输入密码不一致');
-    //     }
-    // } catch (e) {
-    //     // 注册失败，异步删除上传的头像
-    //     fs.unlink(req.files.avatar.path);
-    //     req.flash('error', e.message);
-    //     return res.redirect('/signup');
-    // }
+    try {
+        if (!(name.length >= 1 && name.length <= 10)) { // 验证用户名长度1-10
+            throw new Error('100');
+        }
+        if (['m', 'f', 'x'].indexOf(gender) === -1) {   // 验证性别m、f、x
+            throw new Error('101');
+        }
+        if (password.length < 6) {                      // 密码至少6个字符
+            throw new Error('102');
+        }
+        if (password !== repassword) {                  // 两次密码必须一致
+            throw new Error('103');
+        }
+    } catch (e) {
+        console.log('aaaa')
+        // 注册失败，异步删除上传的头像
+        // fs.unlink(req.files.avatar.path);
+        // req.flash('error', e.message);
+        return res.send(e.message);
+    }
 
     // 明文密码加密
     password = sha1(password);
@@ -68,7 +66,7 @@ router.post('/',  function (req, res, next) {
             // 跳转到首页
             // res.redirect('/posts');
             console.log('ok')
-            res.sendStatus(200).send('what');        //返回1，代表登录成功
+            res.status(200).send('200');        //返回1，代表登录成功
         })
         .catch(function (e) {
             // 注册失败，异步删除上传的头像
@@ -77,7 +75,7 @@ router.post('/',  function (req, res, next) {
             if (e.message.match('E11000 duplicate key')) {
                 // req.flash('error', '用户名已被占用');
                 // return res.redirect('/signup');
-                console.log(e)
+                return res.send('300')
             }
             next(e);
         });

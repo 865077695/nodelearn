@@ -3,28 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <title>注册</title>
+    <style>
+        .error {
+            color: #f43530;
+        }
+
+        .success {
+            color: #3cc51f
+        }
+    </style>
 </head>
 <body>
-<input type="text" id="user">
-<input type="text" id="password">
+<input type="text" id="username" placeholder="请输入用户名"><br>
+<input type="text" id="password" placeholder="请输入密码"><br>
+<input type="text" id="repassword" placeholder="请再次确认密码"><br>
+<label for="m">男</label><input id="m" name="sex" value="m" type="radio" checked>
+<label for="f">女</label><input id="f" name="sex" value="f" type="radio">
+<label for="x">第三性</label><input id="x" name="sex" value="x" type="radio"><br>
 <button class="btn">注册</button>
+<br>
+<div class="success"></div>
+<div class="error"></div>
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 <script>
-$(function () {
-    $('.btn').on('click',function(){
-        $.ajax({
-            url: '/signup',
-            data: {
-                user: $('#user').val(),
-                password: $('#password').val()
-            },
-            method: 'POST',
-            success: function(res){
-                console.log(res)
-            }
+    $(function () {
+        $('.btn').on('click', function () {
+            var gender = $(':radio[name="sex"]:checked').val();
+            $.ajax({
+                url: '/signup',
+                data: {
+                    username: $('#username').val(),
+                    password: $('#password').val(),
+                    repassword: $('#repassword').val(),
+                    gender: gender
+                },
+                method: 'POST',
+                success: function (res) {
+                    console.log(res);
+                    switch (res) {
+                        case '200':
+                            $('.error').text('');
+                            $('.success').text('注册成功，即将跳转至首页');
+                            setTimeout(function () {
+                                location.href = 'index.html';
+                            }, 1000);
+                            break;
+                        case '100':
+                            $('.error').text('用户名长度需在1-10之间');
+                            break;
+                        case '102':
+                            $('.error').text('密码至少6个字符');
+                            break;
+                        case '103':
+                            $('.error').text('两次密码不一致');
+                            break;
+                        case '300':
+                            $('.error').text('用户名已存在，请尝试直接登陆')
+                    }
+                }
+            })
         })
     })
-})
 </script>
 </body>
 </html>

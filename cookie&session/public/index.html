@@ -39,7 +39,7 @@ test页面
                         document.write('请先登录...')
                         setTimeout(function(){
                             location.href = './signin.html?' + location.href
-                        },2000)
+                        },1000)
                     }else{  //此时是登陆状态，res是返回的列表，使用js渲染显示即可
                         $('.status').text('欢迎'+res)
                     }
