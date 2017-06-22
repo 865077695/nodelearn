@@ -14,7 +14,7 @@ router.get('/', function (req, res, next) {
 
 router.post('/commit', function (req, res, next) {
     "use strict";
-    res.send('post,/post/commit,这个是一个post提交数据的请求，也不做用户验证，直接提交')
+    res.send('400')
 })
 
 // 如果需要对用户信息进行验证，则添加一个做验证的回调函数

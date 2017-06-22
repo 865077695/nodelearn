@@ -13,9 +13,10 @@
     </style>
 </head>
 <body>
+<p style="text-align: right"><a href="./signup.html">注册</a><a href="signin.html">登陆</a></p>
 test页面
 <div class="status"></div>
-<button class="btn3">/post/list</button>
+<button class="btn3">这个接口会先检测用户是否登陆</button>
 <button class="btn5">退出登陆</button>
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 <script>
@@ -34,7 +35,7 @@ test页面
             ajax({
                 url: '/posts/list',
                 success: function(res){
-                    if(res === '用户未登录，后台返回一个false,前端接收到值为false则将页面跳转至signin页面'){// 如果未登录则跳转至登陆页面
+                    if(res === '400'){// 如果未登录则跳转至登陆页面
                         console.log(1)
                         document.write('请先登录...')
                         setTimeout(function(){

@@ -32,7 +32,7 @@
                     console.log(res);
                     switch (res) {
                         case '200':
-                            var back = location.href.split('?')[1];
+                            var back = location.href.split('?')[1] || 'index.html';
                             document.write('登陆成功');
                             setTimeout(function () {
                                 location.href = back;
