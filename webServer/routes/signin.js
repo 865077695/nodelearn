@@ -20,16 +20,16 @@ router.post('/', function (req, res, next) {  // 这个是提交用户名密码�
         .then(function(user){
             if(!user){
                 console.log(1111)
-                return res.send('100')
+                return res.send('100')      // 前端获取到100状态码，进行相关操作
             }
             // 检查密码是否正确
             if(sha1(password) !== user.password){
                 return res.send('101')
             }
             delete user.password;
-            // 将用户名存入session
+            // 将用户名存入session，在进行需要验证用户是否登陆的操作时使用
             req.session.user = user;
-            res.send('200')
+            res.send('200')     // 信息正确返回200,前端根据状态码进行后续操作
         })
 })
 

@@ -1,14 +1,15 @@
 /**
  * Created by zzq on 2017/6/21.
  */
+// 启动文件
 const
     path = require('path'),
     express = require('express'),
-    bodyParser = require('body-parser'),
-    config = require('config-lite')(__dirname),
-    session = require('express-session'),
-    MongoStore  = require('connect-mongo')(session),
-    routes = require('./routes');
+    bodyParser = require('body-parser'),            // 解析ajax数据，在后台获取到之后可以通过req.body获取
+    config = require('config-lite')(__dirname),     // 加载配置文件(自动查找config目录下default.js)
+    session = require('express-session'),           // session中间件
+    MongoStore  = require('connect-mongo')(session),// 将session存入mongodb
+    routes = require('./routes');                   // 路由配置文件
 
 
 const app = express();
@@ -31,12 +32,12 @@ app.use(session({
     cookie: {
         maxAge: config.session.maxAge// 过期时间，过期后cookie中的sessionId自动删除
     },
-    store: new MongoStore({                   // 将sessionId存储到mongodb
+    store: new MongoStore({          // 将sessionId存储到mongodb
         url: config.mongodb
     })
 }))
 // 路由
-routes(app);
+routes(app);    // 到这里切换到routes/index.js继续吧
 
 // 监听端口，启动路由
-app.listen(config.port)
+app.listen(config.port) // 监听3000端口
