@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>wxtest</title>
+</head>
+<body>
+<button class="btn1">get access_token</button>
+
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    $(function(){
+        $('.btn1').on('click',function () {
+            $.ajax({
+                url:'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wxe6079f9acb88ba17&secret=c79381d25b938956042946e7ad856d20',
+                method: 'GET',
+                success: function(res){
+                    console.log(res);
+                }
+            })
+        })
+    })
+</script>
+</body>
+</html>

@@ -4,6 +4,7 @@
 // 路由配置
 module.exports = function (app) {
     "use strict";
+    console.log(2);
     // app.use()，第一个参数是要自动追加在路由前面的路径
     app.use('/signin', require('./signin'))             // 登陆页相关路由
     app.use('/signout', require('./signout'))           // 退出相关

@@ -5,6 +5,7 @@
 const
     path = require('path'),
     express = require('express'),
+    sha1 = require('sha1'),
     bodyParser = require('body-parser'),            // 解析ajax数据，在后台获取到之后可以通过req.body获取
     config = require('config-lite')(__dirname),     // 加载配置文件(自动查找config目录下default.js)
     session = require('express-session'),           // session中间件
@@ -14,6 +15,22 @@ const
 
 const app = express();
 
+// 以下为微信token验证部分代码，和登陆注册无关
+/*
+ * 微信token，会向提供的url发送get请求、如果req.query.timestamp不存在则表示并不是要请求/而是要打开静态资源，执行next()
+ * */
+app.get('/', function (req, res, next) {
+    if(req.query.timestamp){
+        let arr = ['zhiq', req.query.timestamp, req.query.nonce].sort();
+        if (sha1(arr[0]+arr[1]+arr[2]) == req.query.signature) {
+            res.send(req.query.echostr)
+        }
+    }else{
+        res.redirect('/wz');    //指向网站页面
+        next()
+    }
+})
+// 微信验证结束
 // 设置静态文件目录
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -22,7 +39,7 @@ app.use(bodyParser.json());
 
 // for parsing application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({extended: true}));
-
+console.log(1)
 // session中间件
 app.use(session({
     name: 'zzz',   // 设置cookie中保存session id的字段名称
