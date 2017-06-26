@@ -1,0 +1,11 @@
+/*动画*/
+@keyframes fadeInTop {
+    0% {margin-top:-800px;opacity: 0}
+    90% {margin-top:250px;opacity: .9}
+    100% {margin-top: 200px;opacity: 1}
+}
+@keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+

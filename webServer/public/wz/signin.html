@@ -2,19 +2,32 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>登陆页面</title>
+    <title>登陆</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../src/css/animate.css">
     <style>
-        .error {
-            color: #f43530;
-        }
+        body{background:#2c3e50}
+        .error {color: #f43530;letter-spacing: 2px}
+        .container{padding-top: 200px;animation: fadeIn 1.5s;}
+        .hr{margin-top:20px;}
+        a{color:#179b16;text-decoration:underline}
     </style>
 </head>
 <body>
-<input type="text" placeholder="username" id="username">
-<input type="text" placeholder="password" id="password">
-<button class="btn">登陆</button>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-4 col-xs-offset-7">
+            <h4 style="color:#e4e4e4">登录 </h4>
+            <input class="hr form-control" type="text" placeholder="username" id="username">
+            <input class="hr form-control" type="text" placeholder="password" id="password">
+            <button class="hr btn btn-primary" style="width:100%">登陆</button>
+            <div class="error hr"></div>
+            <div class="success hr"></div>
+        </div>
+    </div>
+</div>
+
 <br>
-<div class="error"></div>
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 <script>
     $(function () {
@@ -33,13 +46,13 @@
                     switch (res) {
                         case '200':
                             var back = location.href.split('?')[1] || 'index.html';
-                            document.write('登陆成功');
+                            $('.container').html('<p style="text-align: center;color:#e4e4e4;font-size:16px;">登录成功，正在跳转...</p>')
                             setTimeout(function () {
                                 location.href = back;
                             }, 1000);
                             break;
                         case '100':
-                            $('.error').text('用户不存在');
+                            $('.error').html('用户名不存在，重试或'+'<a href="./signup.html">注册</a>');
                             break;
                         case '101':
                             $('.error').text('密码错误');

@@ -26,7 +26,7 @@ app.get('/', function (req, res, next) {
             res.send(req.query.echostr)
         }
     }else{
-        res.redirect('/wz');    //指向网站页面
+        res.redirect('/个人简历');    //指向网站页面
         next()
     }
 })
@@ -39,7 +39,6 @@ app.use(bodyParser.json());
 
 // for parsing application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({extended: true}));
-console.log(1)
 // session中间件
 app.use(session({
     name: 'zzz',   // 设置cookie中保存session id的字段名称

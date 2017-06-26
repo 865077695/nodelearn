@@ -3,27 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <title>注册</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../src/css/animate.css">
     <style>
-        .error {
-            color: #f43530;
-        }
-
-        .success {
-            color: #3cc51f
-        }
+        body{background:#2c3e50}
+        .error {color: #f43530;letter-spacing: 2px}
+        .container{padding-top: 200px;animation: fadeIn 1.5s;}
+        .hr{margin-top:20px;}
+        a{color:#179b16;text-decoration:underline}
     </style>
 </head>
 <body>
-<input type="text" id="username" placeholder="请输入用户名"><br>
-<input type="text" id="password" placeholder="请输入密码"><br>
-<input type="text" id="repassword" placeholder="请再次确认密码"><br>
-<label for="m">男</label><input id="m" name="sex" value="m" type="radio" checked>
-<label for="f">女</label><input id="f" name="sex" value="f" type="radio">
-<label for="x">第三性</label><input id="x" name="sex" value="x" type="radio"><br>
-<button class="btn">注册</button>
-<br>
-<div class="success"></div>
-<div class="error"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-4 col-xs-offset-7">
+            <h4 style="color: #e4e4e4">注册</h4>
+            <input class="hr form-control" type="text" id="username" placeholder="请输入用户名"><br>
+            <input class="hr form-control" type="text" id="password" placeholder="请输入密码"><br>
+            <input class="hr form-control" type="text" id="repassword" placeholder="请再次确认密码"><br>
+            <label class="radio-inline">
+                <input id="m" name="sex" value="m" type="radio" checked> 男
+            </label>
+            <label class="radio-inline">
+                <input id="f" name="sex" value="f" type="radio"> 女
+            </label><br>
+            <button class="btn hr">注册</button>
+            <div class="success"></div>
+            <div class="error"></div>
+        </div>
+    </div>
+</div>
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 <script>
     $(function () {
