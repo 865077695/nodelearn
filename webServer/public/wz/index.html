@@ -25,7 +25,7 @@ test页面
             $.ajax({
                 url: obj.url,
                 method: obj.method || 'GET',
-                success: obj.success||function(res){
+                success: obj.success || function (res) {
                     console.log(res);
                 },
                 data: obj.data || ''
@@ -34,24 +34,24 @@ test页面
         $('.btn3').on('click', function () {
             ajax({
                 url: '/posts/list',
-                success: function(res){
-                    if(res === '400'){// 如果未登录则跳转至登陆页面
+                success: function (res) {
+                    if (res === '400') {// 如果未登录则跳转至登陆页面
                         console.log(1)
                         document.write('请先登录...')
-                        setTimeout(function(){
+                        setTimeout(function () {
                             location.href = './signin.html?' + location.href
-                        },1000)
-                    }else{  //此时是登陆状态，res是返回的列表，使用js渲染显示即可
-                        $('.status').text('欢迎'+res)
+                        }, 1000)
+                    } else {  //此时是登陆状态，res是返回的列表，使用js渲染显示即可
+                        $('.status').text('欢迎' + res)
                     }
                 }
             })
         })
-        $('.btn5').on('click', function(){
+        $('.btn5').on('click', function () {
             ajax({
                 url: '/signout',
-                success: function(res){
-                    if(res === 'ok'){
+                success: function (res) {
+                    if (res === 'ok') {
                         $('.status').text('退出成功')
                     }
                 }

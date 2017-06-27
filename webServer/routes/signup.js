@@ -23,7 +23,7 @@ router.post('/',  function (req, res, next) {
     console.log(req.body);
     // 校验参数
     try {
-        if (!(name.length >= 1 && name.length <= 10)) { // 验证用户名长度1-10
+        if (!(name.length >= 1 && name.length <= 11)) { // 验证用户名长度1-10
             throw new Error('100');
         }
         if (['m', 'f', 'x'].indexOf(gender) === -1) {   // 验证性别m、f、x

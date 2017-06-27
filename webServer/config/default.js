@@ -2,7 +2,7 @@
  * Created by zzq on 2017/6/21.
  */
 module.exports = {
-    port: 3000,
+    port: 8888,
     session: {
         secret: 'zhiq',
         key: 'zhang',

@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/865077695/nodelearn/issues"
   },
-  "homepage": "https://github.com/865077695/nodelearn#readme"
+  "homepage": "https://github.com/865077695/nodelearn#readme",
+  "dependencies": {
+    "mysql": "2.13.0"
+  }
 }

@@ -27,7 +27,7 @@
             <label class="radio-inline">
                 <input id="f" name="sex" value="f" type="radio"> <span style="color: #e4e4e4">女</span>
             </label><br>
-            <button class="btn hr">注册</button>
+            <button class="btn hr btn-primary" style="width:100%">注册</button>
             <div class="success"></div>
             <div class="error"></div>
         </div>
@@ -51,14 +51,13 @@
                     console.log(res);
                     switch (res) {
                         case '200':
-                            $('.error').text('');
-                            $('.success').text('注册成功，即将跳转至首页');
+                            $('.container').html('<p style="text-align: center;color:#e4e4e4;font-size:16px;">注册成功，正在跳转...</p>')
                             setTimeout(function () {
                                 location.href = 'index.html';
                             }, 1000);
                             break;
                         case '100':
-                            $('.error').text('用户名长度需在1-10之间');
+                            $('.error').text('用户名长度需在1-11之间');
                             break;
                         case '102':
                             $('.error').text('密码至少6个字符');

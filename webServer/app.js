@@ -19,18 +19,19 @@ const app = express();
 /*
  * 微信token，会向提供的url发送get请求、如果req.query.timestamp不存在则表示并不是要请求/而是要打开静态资源，执行next()
  * */
-app.get('/', function (req, res, next) {
-    if(req.query.timestamp){
-        let arr = ['zhiq', req.query.timestamp, req.query.nonce].sort();
-        if (sha1(arr[0]+arr[1]+arr[2]) == req.query.signature) {
-            res.send(req.query.echostr)
-        }
-    }else{
-        res.redirect('/个人简历');    //指向网站页面
-        next()
-    }
-})
+// app.get('/', function (req, res, next) {
+//     if(req.query.timestamp){
+//         let arr = ['zhiq', req.query.timestamp, req.query.nonce].sort();
+//         if (sha1(arr[0]+arr[1]+arr[2]) == req.query.signature) {
+//             res.send(req.query.echostr)
+//         }
+//     }else{
+//         res.redirect('/个人简历');    //指向网站页面
+//         next()
+//     }
+// })
 // 微信验证结束
+
 // 设置静态文件目录
 app.use(express.static(path.join(__dirname, 'public')));
 
