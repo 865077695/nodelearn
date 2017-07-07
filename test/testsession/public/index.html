@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button class="btn">点击</button>
+<button class="btn2">点击</button>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    $('.btn').on('click', function(){
+        $.ajax({
+            method:'GET',
+            url:'/test',
+            success: function(res){
+                console.log(res)
+            }
+        })
+    })
+
+    $('.btn2').on('click', function(){
+        $.ajax({
+            method:'POST',
+            url:'/test',
+            success: function(res){
+                console.log(res)
+            }
+        })
+    })
+</script>
+</body>
+</html>

@@ -12,14 +12,12 @@ const
 // 注意一下路由路径均会自动添加前缀'/signin'
 router.post('/', function (req, res, next) {  // 这个是提交用户名密码，来登录的
     "use strict";
-    console.log(req.body);  // req.body就是前端传来的数据（用户名密码）
     let name = req.body.username,
         password = req.body.password;
     // 然后在这里将这个数据与数据库内的记录作比较
     UserModel.getUserByName(name)
         .then(function(user){
             if(!user){
-                console.log(1111)
                 return res.send('100')      // 前端获取到100状态码，进行相关操作
             }
             // 检查密码是否正确
@@ -28,7 +26,7 @@ router.post('/', function (req, res, next) {  // 这个是提交用户名密码�
             }
             delete user.password;
             // 将用户名存入session，在进行需要验证用户是否登陆的操作时使用
-            req.session.user = user;
+            req.session.user = user.name;
             res.send('200')     // 信息正确返回200,前端根据状态码进行后续操作
         })
 })

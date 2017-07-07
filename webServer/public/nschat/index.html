@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>nschat</title>
+</head>
+<body>
+聊天室
+<button class="btn">sendMsg</button>
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+<script>
+    $(function(){
+        var socket = io.connect();  //连接服务器，触发connection事件
+        $('.btn').on('click', function () {
+            socket.emit('foo' ,'hello');        // 触发foo事件，同时发送字符串'htllo
+        })
+    })
+</script>
+</body>
+</html>

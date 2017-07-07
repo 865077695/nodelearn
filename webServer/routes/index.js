@@ -1,6 +1,7 @@
 /**
  * Created by zzq on 2017/6/21.
  */
+// 这里暴露出去的是一个函数，需要一个参数app，就是执行下面这个函数，这个函数是给路由加的前缀路径，感觉就相当于分支了
 // 路由配置
 module.exports = function (app) {
     "use strict";

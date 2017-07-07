@@ -19,6 +19,6 @@ router.post('/commit', function (req, res, next) {
 
 // 如果需要对用户信息进行验证，则添加一个做验证的回调函数
 router.get('/list', checkLogin, function (req, res, next) {
-
+    res.send(req.session.user)
 })
 module.exports = router;

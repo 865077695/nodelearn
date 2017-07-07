@@ -16,8 +16,10 @@
 <p style="text-align: right"><a href="signup.html">注册</a><a href="signin.html">登陆</a></p>
 test页面
 <div class="status"></div>
+<button class="btn1">这个接口不用登陆</button>
 <button class="btn3">这个接口会先检测用户是否登陆</button>
 <button class="btn5">退出登陆</button>
+<a href="../nschat/">进入聊天室</a>
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 <script>
     $(function () {
@@ -31,6 +33,12 @@ test页面
                 data: obj.data || ''
             })
         }
+        $('.btn1').on('click',function(){
+            ajax({
+                method: 'POST',
+                url:'/posts/commit'
+            })
+        })
         $('.btn3').on('click', function () {
             ajax({
                 url: '/posts/list',

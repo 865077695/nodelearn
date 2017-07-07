@@ -4,7 +4,7 @@
 var User = require('../lib/mongo').User;
 
 module.exports = {
-    //注册一个用户
+    //注册一个用户d
     create: function(user){
         "use strict";
         return User.create(user).exec();
@@ -12,7 +12,6 @@ module.exports = {
 
     //通过用户名获取用户信息
     getUserByName: function (name) {
-        console.log(name)
         return User
             .findOne({name:name})
             // .addCreatedAt()
