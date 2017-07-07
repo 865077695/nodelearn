@@ -13,4 +13,5 @@ io.on('connection', function (socket) {
         socket.emit('bar', {name: 'zhiq'})
     });
 })
+
 module.exports = io;
