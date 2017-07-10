@@ -3,18 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <title>nschat</title>
+    <style>
+        *{margin:0;padding:0}
+        .log{width:80%;height:500px;margin:0 auto;padding:20px;border:1px solid #179b16;overflow: auto;}
+        .log-name{display: block;padding:10px 0;font-size: 12px;color:#2c3e50;font-weight: 700;}
+        .log-detail{display: block;padding:10px;border-radius:5px;}
+        .log-other{background: #efefef}
+        .log-self{background: dodgerblue;}
+        .ipt{min-height:100px;}
+        ul{list-style: none}
+    </style>
 </head>
 <body>
 聊天室
-<button class="btn">sendMsg</button>
+<ul class="log">
+</ul>
+<div class="ipt" contenteditable="true" style="border:1px solid #2c3e50"></div>
+<button class="sendMsg">send</button>
 <script src="/socket.io/socket.io.js"></script>
 <script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
 <script>
     $(function(){
         var socket = io.connect();  //连接服务器，触发connection事件
-        $('.btn').on('click', function () {
-            socket.emit('foo' ,'hello');        // 触发foo事件，同时发送字符串'htllo
-        })
+        var username,chatLog = '';
+        // 查询用户名
+        $.ajax({
+            url: '/user/userInfo',
+            method: 'GET',
+            success: function (userInfo) {
+                if(userInfo == '400'){
+                    console.log('未登录')
+                }else{
+                    username = userInfo
+                }
+            }
+        });
+        $('.sendMsg').on('click', function(){
+            var newMsg = $('.ipt').html();
+            console.log(newMsg);
+            socket.emit('_SENDMSG', {   // 将该用户的聊天信息发送至服务器
+                name: username,
+                newMsg: newMsg
+            });
+        });
+        // 监听消息更新，当有用户发送消息时触发
+        socket.on('updateLog', function(data){
+            console.log(data);
+            var name = data.name;
+            var msg = data.newMsg;
+            if(name == username){
+                name = '我';
+                chatLog += '<li><span class="log-name" style="text-align: right">'+name+' 说:</span><span class="log-detail log-self">'+msg+'</span></li>'
+            }
+            else{
+                chatLog += '<li><span class="log-name">'+name+' 说:</span><span class="log-detail log-other">'+msg+'</span></li>'
+            }
+            $('.log').html(chatLog);
+        });
     })
 </script>
 </body>

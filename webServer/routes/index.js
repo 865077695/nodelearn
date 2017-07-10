@@ -11,6 +11,7 @@ module.exports = function (app) {
     app.use('/signup', require('./signup'))             // 注册相关
     app.use('/posts', require('./posts'))               // 其他
     app.use('/test', require('./test'))                 // 测试
+    app.use('/user', require('./user'))
 
     // 可以选择从注册页开始，打开signup.html和signup.js
 }

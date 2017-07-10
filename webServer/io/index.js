@@ -8,10 +8,11 @@ const
     io = require('socket.io').listen(server);
 
 io.on('connection', function (socket) {
-    socket.on('foo', function (data) {
-        console.log(data)
-        socket.emit('bar', {name: 'zhiq'})
-    });
+    console.log('connection complte')
+    socket.on('_SENDMSG', function (data) {
+        console.log(data);
+        io.sockets.emit('updateLog', data);     // 将用户名和消息内容发送给前端用户
+    })
 })
 
 module.exports = io;

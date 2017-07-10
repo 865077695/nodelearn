@@ -58,7 +58,7 @@ router.post('/',  function (req, res, next) {
             user = result.ops[0];
             // 将用户信息存入 session
             delete user.password;
-            req.session.user = user;    // 将user存入session用于在某些操作前验证是否已登录
+            req.session.user = user.name;    // 将user存入session用于在某些操作前验证是否已登录
 
             console.log('ok')
             res.status(200).send('200');        //返回200，前端接收到200时代表登录成功进行后续操作
