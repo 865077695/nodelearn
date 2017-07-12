@@ -29,11 +29,13 @@ $(function () {
     // 监听enter事件，有人进入聊天室时触发
     socket.on('enter', function (data) {
         console.log(data);
-        $('.record').append('<p>欢迎 <span style="color:mediumvioletred;">' + data + '</span> !</p>')
+        $('.record').append('<p>欢迎 <span style="color:mediumvioletred;">' + data.name + '</span> !</p>');
+        $('.friend-list>ul').html(renderLiveList(data.live_list));
     });
     // 监听用户退出事件
     socket.on('exit', function (data) {
-        $('.record').append('<p><span style="color:mediumvioletred;">' + data + '</span> 离开了!</p>')
+        $('.record').append('<p><span style="color:mediumvioletred;">' + data.name + '</span> 离开了!</p>');
+        $('.friend-list>ul').html(renderLiveList(data.live_list));
     })
     // 监听消息更新，当有用户发送消息时触发
     socket.on('updateLog', function (data) {
@@ -47,4 +49,15 @@ $(function () {
             $('.log').append('<li><span class="log-name">' + name + ' 说:</span><span class="log-detail log-other">' + msg + '</span></li>')
         }
     });
+
+    // 渲染在线列表
+    function renderLiveList(list){
+        console.log(list);
+        "use strict";
+        var liveList = '';
+        for(var i = 0,len = list.length; i < len; i++){
+            liveList += '<li>'+ list[i] +'</li>'
+        }
+        return liveList;
+    }
 })
