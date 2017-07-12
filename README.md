@@ -14,6 +14,6 @@
     
 3. [webServer](https://github.com/865077695/nodelearn/tree/master/webServer)
     
-    简单的一个注册登陆系统
+    简单的一个注册登录系统及socket.io即时消息
     
-    使用express  mongodb express-session等
+    使用express  mongodb express-session socket.io等
