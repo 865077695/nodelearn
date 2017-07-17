@@ -5,7 +5,6 @@
       <tab-item selected @on-item-click="onItemClick('signin')">登录</tab-item>
       <tab-item @on-item-click="onItemClick('signup')">注册</tab-item>
     </tab>
-    {{ statusCode }}
     <template v-if="signType === 'signin'">
       <group>
         <x-input title="账号" required v-model="signinInfo.username" key="signin"></x-input>
@@ -13,7 +12,7 @@
       <group>
         <x-input title="密码" required v-model="signinInfo.password" key="signin"></x-input>
       </group>
-      <divider v-if="statusCode !== '200'">信息填写有误</divider>
+      <p class="error" v-if="statusCode !== '200'">账号或密码错误</p>
       <x-button type="primary" @click.native="signin" :disabled="!(signinInfo.username && signinInfo.password)">登录
       </x-button>
     </template>
@@ -63,11 +62,11 @@
         },
         options: ['f', 'm', 'x'],
         signType: 'signin',
-        statusCode: 200
+        statusCode: '200'
       }
     },
     components: {
-      Divider, Tab, TabItem, XInput, Group, XButton, CheckerItem, Checker
+      Divider, Tab, TabItem, XInput, Group, XButton, Checker, CheckerItem
     },
     methods: {
       onItemClick: function (type) {
@@ -76,16 +75,19 @@
       signin: function () {
         var that = this
         console.log(111)
-        this.$http({
+        this._ajax({
           url: 'signin/', method: 'POST', data: that.signinInfo
         }).then(function (res) {
           console.log(res)
           that.statusCode = res.data.code
+          if (that.statusCode === '200') {
+            that.$router.push({path: '/'})
+          }
         })
       },
       signup: function () {
         var that = this
-        this.$http({
+        this._ajax({
           url: 'signup/', method: 'POST', data: that.signupInfo
         }).then(function (res) {
           console.log(res)
@@ -93,8 +95,7 @@
         })
       },
       test: function () {
-        console.log('test')
-        this.$http({
+        this._ajax({
           url: 'posts/list/', method: 'GET'
         }).then(function (res) {
           console.log(res)
@@ -118,6 +119,8 @@
     height: 100%
   }
 
+  .error{color:#e64340;text-align: center;padding-top:10px;}
+  button{margin-top: 10px;}
   .box {
     padding: 5px;
     border-bottom: 1px solid #eee

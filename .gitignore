@@ -2,3 +2,4 @@
 # 忽略任意文件夹内的node_modules文件夹
 */node_modules/
 .idea/
+/zChat/frontend/node_modules/
