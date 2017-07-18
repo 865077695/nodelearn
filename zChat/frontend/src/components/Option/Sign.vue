@@ -73,34 +73,42 @@
         var that = this
         console.log(111)
         this._ajax({
-          url: 'signin/', method: 'POST', data: that.signinInfo
-        }).then(function (res) {
-          console.log(res)
-          that.statusCode = res.data.code
-          if (that.statusCode === '200') {
-            that.$router.push({path: '/'})
-          } else {
-            that.$vux.alert.show({
-              title: '错误',
-              content: '账号或密码错误'
-            })
+          url: 'signin/',
+          method: 'POST',
+          data: that.signinInfo,
+          success: function (res) {
+            console.log(res)
+            that.statusCode = res.data.code
+            if (that.statusCode === '200') {
+              that.$router.push({path: '/'})
+            } else {
+              that.$vux.alert.show({
+                title: '错误',
+                content: '账号或密码错误'
+              })
+            }
           }
         })
       },
       signup: function () {
         var that = this
         this._ajax({
-          url: 'signup/', method: 'POST', data: that.signupInfo
-        }).then(function (res) {
-          console.log(res)
-          that.statusCode = res.data
+          url: 'signup/',
+          method: 'POST',
+          data: that.signupInfo,
+          success: function (res) {
+            console.log(res)
+            that.statusCode = res.data
+          }
         })
       },
       test: function () {
         this._ajax({
-          url: 'posts/list/', method: 'GET'
-        }).then(function (res) {
-          console.log(res)
+          url: 'posts/list/',
+          method: 'GET',
+          success: function (res) {
+            console.log(res)
+          }
         })
       }
     },

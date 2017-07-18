@@ -14,16 +14,19 @@ const
 
 console.log(1111)
 const
-    app = express();
-    // server = require('http').createServer(app),
-    // io = require('./io').listen(server);
+    app = express(),
+    server = require('http').createServer(app),
+    IO = require('./io');
+
+// 配置socket.io
+IO(server);
 
 //设置跨域访问
-app.all('*', function(req, res, next) {
+app.all('*', function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "http://localhost:8080");// 允许来自该域名的跨域访问
     res.header("Access-Control-Allow-Credentials", true);// 要携带cookie必须做这个配置
     res.header("Access-Control-Allow-Headers", "X-Requested-With,Content-Type");// 头信息允许格式
-    res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");// 允许跨域使用的方法
+    res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");// 允许跨域使用的方法
     res.header("Content-Type", "application/json;charset=utf-8");
     next();
 });
@@ -56,5 +59,5 @@ app.use(session({
 routes(app);    // 到这里切换到routes/index.js继续吧
 
 // 监听端口，启动路由
-app.listen(config.port) // 监听3000端口
-// server.listen(config.port) // 监听3000端口
+// app.listen(config.port) // 监听3000端口
+server.listen(config.port) // 监听3000端口

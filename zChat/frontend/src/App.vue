@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <x-header :left-options="{showBack: true}">{{ title }}</x-header>
+    <x-header :left-options="leftOptions">{{ title }}</x-header>
+    <!--<button @click="show">click</button>-->
     <router-view></router-view>
-    <button @click="show">click</button>
   </div>
 </template>
 
@@ -13,6 +13,11 @@
     name: 'app',
     store,
     components: {Alert, XHeader},
+    data () {
+      return {
+        leftOptions: {showBack: false}
+      }
+    },
     methods: {
       show: function () {
         this.$vux.alert.show({

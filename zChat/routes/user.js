@@ -9,7 +9,8 @@ const
 // 返回用户名
 router.get('/userInfo', checkLogin, function (req, res, next) {
     "use strict";
-    res.send(req.session.user)
+    console.log('user.js---req.session.user:'+req.session.user)
+    res.send({user: req.session.user})
 })
 
 
