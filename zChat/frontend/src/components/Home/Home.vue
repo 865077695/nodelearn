@@ -1,15 +1,14 @@
 <template>
   <div class="hello">
-    Private
-    <div class="speak">
-    </div>
+    home
+    <router-link to="/Sign">去登录</router-link>
+    <router-link to="/Public/JavaScript技术群聊">去聊天室</router-link>
   </div>
 </template>
 
 <script>
   export default {
-    name: 'Private',
-    components: {},
+    name: 'Home',
     data () {
       return {
         msg: 'Welcome to Your Vue.js App'
@@ -20,9 +19,5 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  .speak {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-  }
+
 </style>

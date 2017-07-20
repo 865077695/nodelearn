@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Layer from '@/components/Layer'
-// import section from '@/components/section'
+import Home from '@/components/Home/Home'
 import friendList from '@/components/friendList'
 import Option from '@/components/Option'
 import Sign from '@/components/Option/Sign'
@@ -16,7 +16,7 @@ import store from '@/store'
 const routerList = [
   {
     path: '/',
-    name: '首页',
+    redirect: '/Home',
     component: Layer,
     children: [
       {
@@ -28,6 +28,11 @@ const routerList = [
         path: 'friendList',
         name: '在线列表',
         component: friendList
+      },
+      {
+        path: 'Home',
+        name: '首页',
+        component: Home
       }
     ]
   },

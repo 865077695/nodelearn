@@ -17,13 +17,15 @@
     </template>
     <template v-else>
       <group>
-        <x-input title="账号" required v-model="signupInfo.username" key="signup"></x-input>
+        <x-input title="账号" required v-model="signupInfo.username" :max="10" placeholder="长度在1~10之间"
+                 key="signup"></x-input>
       </group>
       <group>
-        <x-input title="密码" required v-model="signupInfo.password" :min="6"></x-input>
+        <x-input title="密码" required v-model="signupInfo.password" placeholder="至少6位" :min="6"></x-input>
       </group>
       <group>
-        <x-input title="确认密码" required v-model="signupInfo.repassword" :equal-with="signupInfo.password"></x-input>
+        <x-input title="确认密码" required v-model="signupInfo.repassword" placeholder="两次必须一致"
+                 :equal-with="signupInfo.password"></x-input>
       </group>
       <div class="box">
         <checker v-model="signupInfo.gender" default-item-class="demo2-item" selected-item-class="demo2-item-selected">
@@ -42,9 +44,11 @@
 </template>
 
 <script>
+  import store from '@/store'
   import {Divider, Tab, TabItem, XInput, Group, XButton, Checker, CheckerItem} from 'vux'
   export default {
     name: 'sign',
+    store,
     data () {
       return {
         signinInfo: {
@@ -79,7 +83,8 @@
           success: function (res) {
             console.log(res)
             that.statusCode = res.data.code
-            if (that.statusCode === '200') {
+            that.$store.commit('setUser', {user: res.data.user})
+            if (that.statusCode === 200) {
               that.$router.push({path: '/'})
             } else {
               that.$vux.alert.show({
@@ -97,8 +102,21 @@
           method: 'POST',
           data: that.signupInfo,
           success: function (res) {
-            console.log(res)
-            that.statusCode = res.data
+            that.statusCode = res.data.code
+            that.$store.commit('setUser', {user: res.data.user})
+            if (that.statusCode === 200) {
+              that.$router.push({path: '/'})
+            } else if (that.statusCode === 300) {
+              that.$vux.alert.show({
+                title: '错误',
+                content: '用户名已存在'
+              })
+            } else {
+              that.$vux.alert.show({
+                title: '错误',
+                content: '未知错误'
+              })
+            }
           }
         })
       },

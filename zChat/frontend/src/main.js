@@ -5,7 +5,8 @@ import App from './App'
 import router from './router'
 
 import VueSocketio from 'vue-socket.io'
-Vue.use(VueSocketio, 'http://localhost:8888')
+Vue.use(VueSocketio, 'http://zhiq.win:8888')
+// Vue.use(VueSocketio, 'http://localhost:8888')
 
 import _ajax from './script/ajax.js'
 Vue.prototype._ajax = _ajax

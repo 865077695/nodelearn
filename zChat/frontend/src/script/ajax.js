@@ -17,6 +17,7 @@ var $http = function (option) {
     method: method,
     data: data,
     baseURL: 'http://localhost:8888/',
+    // baseURL: 'http://zhiq.win:8888/',
     responseType: 'json',
     withCredentials: true
   }).then(function (res) {

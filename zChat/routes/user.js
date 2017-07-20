@@ -1,5 +1,6 @@
 /**
  * Created by zzq on 2017/7/10.
+ * 该接口用来返回给前端用户名
  */
 const
     express = require('express'),

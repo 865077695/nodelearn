@@ -19,7 +19,7 @@
     data () {
       return {
         FriendList: [
-          {'name': 'zhiq', 'imgSrc': 'static/img/userPhoto/zhiq.png'},
+          {'name': 'zhiq', 'imgSrc': './static/img/userPhoto/zhiq.png'},
           {'name': '志强', 'imgSrc': './static/img/userPhoto/zhiq.png'},
           {'name': 'zhiq2', 'imgSrc': './static/img/userPhoto/zhiq.png'},
           {'name': 'zhiq3', 'imgSrc': './static/img/userPhoto/zhiq.png'},
