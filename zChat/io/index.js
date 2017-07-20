@@ -6,7 +6,9 @@ module.exports = function (server) {
     // 定义单例数组来保存当前在线的用户
     if (!live_list) {
         var live_list = [];
+        var list = [];
     }
+    // [{user:'zhiq',id:'aaaaa'},{user:'aaa',id:'bbbbbb'}]
     io.on('connection', function (socket) {
         console.log('connection complte')
         socket.on('_BROADCAST', function (data) {
@@ -14,11 +16,13 @@ module.exports = function (server) {
         });
         socket.on('_ENTER', function (data) {       // 新用户登入
             // 检测socket.live_list内是否有这个user，没有的话就添加进去
-            console.log(data)
             if (live_list.indexOf(data.user) == -1) {
                 live_list.push(data.user)
             }
-
+            // 检测socket.live_list内是否有这个user了，没有才加进去
+            // live.forEach(function (item) {
+            //     if(item)
+            // })
             console.log(live_list)
             socket.user = data.user;
             console.log('socket.id:' + socket.id)
@@ -44,4 +48,5 @@ module.exports = function (server) {
             });
         })
     })
+
 }

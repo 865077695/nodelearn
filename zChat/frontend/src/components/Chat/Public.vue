@@ -63,7 +63,6 @@
     methods: {
       // 在这里触发服务器socket
       sendMsg (e) {
-//        e.stopPropagation()
         console.log(e)
         this.$socket.emit('_BROADCAST', {
           msg: this.speak,

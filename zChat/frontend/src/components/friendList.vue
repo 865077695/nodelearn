@@ -2,9 +2,9 @@
   <div id="friend-list">
     <ul class="list">
       <li class="friend" v-for="friend in FriendList">
-        <router-link :to="'/Private/'+friend.name" tag="div">
+        <router-link :to="'/Private/'+friend.user" tag="div">
           <img class="friend-photo" :src="friend.imgSrc" alt="" width="50" height="50">
-          <span class="friend-name">{{ friend.name }}</span>
+          <span class="friend-name">{{ friend.user }}</span>
         </router-link>
       </li>
     </ul>
@@ -13,29 +13,49 @@
 
 <script>
   import store from '@/store'
+  import getUser from '../script/getUser'
   export default {
     name: 'firendList',
     store,
     data () {
       return {
-        FriendList: [
-          {'name': 'zhiq', 'imgSrc': './static/img/userPhoto/zhiq.png'},
-          {'name': '志强', 'imgSrc': './static/img/userPhoto/zhiq.png'},
-          {'name': 'zhiq2', 'imgSrc': './static/img/userPhoto/zhiq.png'},
-          {'name': 'zhiq3', 'imgSrc': './static/img/userPhoto/zhiq.png'},
-          {'name': 'zhiq3', 'imgSrc': './static/img/userPhoto/zhiq.png'},
-          {'name': 'zhiq3', 'imgSrc': './static/img/userPhoto/zhiq.png'},
-          {'name': 'zhiq3', 'imgSrc': './static/img/userPhoto/zhiq.png'},
-          {'name': 'zhiq3', 'imgSrc': './static/img/userPhoto/zhiq.png'},
-          {'name': 'zhiq3', 'imgSrc': './static/img/userPhoto/zhiq.png'},
-          {'name': 'zhiq3', 'imgSrc': './static/img/userPhoto/zhiq.png'}
-        ],
+        live_list: [],
         user: ''
       }
     },
     sockets: {
       connection: function () {
         console.log('socket connect')
+      },
+      enter: function (data) {
+        console.log(data)
+        this.live_list = data.live_list
+      },
+      exit: function (data) {
+        console.log(data)
+        this.live_list = data.live_list
+      }
+    },
+    computed: {
+      FriendList: function () {
+        var list = []
+        this.live_list.forEach(function (item) {
+          list.push({user: item, imgSrc: './static/img/userPhoto/zhiq.png'})
+        })
+        return list
+      }
+    },
+    beforeCreate () {
+      var that = this
+      that.$socket.emit('connection', '连接成功')
+      if (this.$store.state.user === '') {
+        console.log(222)
+        getUser(function (res) {
+          console.log(res)
+          that.$socket.emit('_ENTER', {user: res.data.user})
+        })
+      } else {
+        that.$socket.emit('_ENTER', {user: that.$store.state.user})
       }
     }
   }
