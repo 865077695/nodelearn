@@ -2,7 +2,7 @@
   <div class="hello">
     home
     <router-link to="/Sign">去登录</router-link>
-    <router-link to="/Public/JavaScript技术群聊">去聊天室</router-link>
+    <router-link to="/Public">去聊天室</router-link>
   </div>
 </template>
 

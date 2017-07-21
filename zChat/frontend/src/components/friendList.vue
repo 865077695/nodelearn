@@ -1,8 +1,11 @@
 <template>
   <div id="friend-list">
     <ul class="list">
+      <li class="friend">
+        <router-link to="/Public" tag="div">公共聊天室<span style="float: right;margin-right:10px;"> > </span></router-link>
+      </li>
       <li class="friend" v-for="friend in FriendList">
-        <router-link :to="'/Private/'+friend.user" tag="div">
+        <router-link :to="{name: 'Private', params: {socketId: friend.id,user: friend.user}}" tag="div">
           <img class="friend-photo" :src="friend.imgSrc" alt="" width="50" height="50">
           <span class="friend-name">{{ friend.user }}</span>
         </router-link>
@@ -39,8 +42,13 @@
     computed: {
       FriendList: function () {
         var list = []
+        var that = this
         this.live_list.forEach(function (item) {
-          list.push({user: item, imgSrc: './static/img/userPhoto/zhiq.png'})
+          item.imgSrc = './static/img/userPhoto/zhiq.png'
+          // 如果item不是本人，将item推入数组list
+          if (item.user !== that.$store.state.user) {
+            list.push(item)
+          }
         })
         return list
       }
@@ -49,7 +57,6 @@
       var that = this
       that.$socket.emit('connection', '连接成功')
       if (this.$store.state.user === '') {
-        console.log(222)
         getUser(function (res) {
           console.log(res)
           that.$socket.emit('_ENTER', {user: res.data.user})
@@ -68,22 +75,7 @@
     bottom: 50px;
     left: 0;
     right: 0;
-    overflow: auto;
-  }
-
-  #friend-list::-webkit-scrollbar-thumb {
-    background: #ccc;
-    width: 3px;
-    border-radius: 10px;
-  }
-
-  #friend-list::-webkit-scrollbar-track {
-    background: #f7f7f7;
-    width: 3px;
-  }
-
-  #friend-list::-webkit-scrollbar {
-    width: 5px
+    /*overflow: auto;*/
   }
 
   .friend {

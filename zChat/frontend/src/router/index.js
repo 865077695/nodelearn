@@ -42,12 +42,12 @@ const routerList = [
     component: Sign
   },
   {
-    path: '/Private/:id',
+    path: '/Private',
     name: 'Private',
     component: Private
   },
   {
-    path: '/Public/:id',
+    path: '/Public',
     name: 'Public',
     component: Public
   }
@@ -58,14 +58,9 @@ const router = new Router({
 })
 
 router.beforeEach(function (to, from, next) {
-  var title = to.name
-  // 解码url中中文
-  if (to.name === 'Private' || to.name === 'Public') {
-    title = decodeURI(to.fullPath.slice(to.fullPath.lastIndexOf('/') + 1))
-  }
   // 当路由开始之前，触发state的RouterChangeStart，并传入参数title
   store.commit('routerChangeStart', {
-    title: title
+    title: to.name
   })
   next()
 })

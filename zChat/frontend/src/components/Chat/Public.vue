@@ -1,6 +1,5 @@
 <template>
   <div class="hello">
-    Public
     <div class="sysMsg">
       <p>{{ sysMsg }}</p>
     </div>
@@ -9,7 +8,6 @@
         {{msg.user}} say: {{ msg.msg}}
       </li>
     </ul>
-    <button @click="sendMsg">send</button>
     <div class="speak">
       <group>
         <x-textarea v-on:keyup.enter.native="sendMsg" v-model="speak" :rows="1" :show-counter="false" :max="50"
@@ -62,8 +60,7 @@
     },
     methods: {
       // 在这里触发服务器socket
-      sendMsg (e) {
-        console.log(e)
+      sendMsg () {
         this.$socket.emit('_BROADCAST', {
           msg: this.speak,
           user: this.$store.state.user

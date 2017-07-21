@@ -9,10 +9,12 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     isOnline: false,
-    isLoading: false,
+    // 当前路由标题,在app.vue中调用设置标题
     title: '',
-    direction: true,
-    user: ''
+    // 当前用户名
+    user: '',
+    // 在线列表
+    live_lsit: []
   },
   mutations: {
     // 这是一个注册的突变方法，通过组件的methods里触发这里的方法来执行相关的state里的数据更新。state里的数据可以由任意组件获取到,参数data为触发时传递的参数。

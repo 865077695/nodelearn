@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <x-header :left-options="leftOptions">{{ title }}</x-header>
-    <!--<button @click="show">click</button>-->
     <router-view></router-view>
   </div>
 </template>
@@ -16,14 +15,6 @@
     data () {
       return {
         leftOptions: {showBack: false}
-      }
-    },
-    methods: {
-      show: function () {
-        this.$vux.alert.show({
-          title: 'zhiq',
-          content: 'text'
-        })
       }
     },
     computed: {
@@ -42,4 +33,18 @@
   /*引入animate动画库*/
   @import './assets/css/animate.min.css';
 
+  *::-webkit-scrollbar-thumb {
+    background: #ccc;
+    width: 3px;
+    border-radius: 10px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #f7f7f7;
+    width: 3px;
+  }
+
+  *::-webkit-scrollbar {
+    width: 5px
+  }
 </style>
