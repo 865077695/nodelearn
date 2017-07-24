@@ -11,7 +11,10 @@
   export default {
     name: 'app',
     store,
-    components: {Alert, XHeader},
+    components: {
+      Alert,
+      XHeader
+    },
     data () {
       return {
         leftOptions: {showBack: false}

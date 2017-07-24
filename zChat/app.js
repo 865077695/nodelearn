@@ -23,8 +23,8 @@ IO(server);
 
 //设置跨域访问
 app.all('*', function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "http://zhiq.win");// 允许来自该域名的跨域访问
-    // res.header("Access-Control-Allow-Origin", "http://localhost:8080");// 允许来自该域名的跨域访问
+    // res.header("Access-Control-Allow-Origin", "http://zhiq.win");// 允许来自该域名的跨域访问
+    res.header("Access-Control-Allow-Origin", "http://localhost:8080");// 允许来自该域名的跨域访问
     res.header("Access-Control-Allow-Credentials", true);// 要携带cookie必须做这个配置
     res.header("Access-Control-Allow-Headers", "X-Requested-With,Content-Type");// 头信息允许格式
     res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");// 允许跨域使用的方法
